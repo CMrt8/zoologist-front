@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 """
 # Zoologist front
@@ -73,3 +74,25 @@ What are the steps to follow in order to call an API ?
 
 ## Finally, we can display the prediction to the user
 """
+
+url = "http://127.0.0.1:8000/predict"
+
+if st.button("Predict species"):
+
+    params = {
+        "island": island,
+        "bill_length_mm": bill_length_mm,
+        "bill_depth_mm": bill_depth_mm,
+        "flipper_length_mm": flipper_length_mm,
+        "body_mass_g": body_mass_g,
+        "sex": sex,
+    }
+
+    response = requests.get(
+        url,
+        params=params
+    )
+
+    prediction = response.json()["prediction"]
+
+    st.success(f"Predicted species: {prediction}")

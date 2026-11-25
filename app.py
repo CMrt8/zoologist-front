@@ -75,7 +75,7 @@ What are the steps to follow in order to call an API ?
 ## Finally, we can display the prediction to the user
 """
 
-url = "http://127.0.0.1:8000/predict"
+url = f"{st.secrets['API_URL']}/predict"
 
 if st.button("Predict species"):
 
